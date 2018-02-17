@@ -34,14 +34,15 @@
 <div class="wrapper">
 
     <aside class="main-sidebar">
-        <section style="padding-bottom:30px;padding-left:20px;"><h4><a href="{% url 'backend' %}" style="color:white">Backend</a>
+        <section style="padding-bottom:30px;padding-left:20px;"><h4><a href="{% url 'backend-list' %}"
+                                                                       style="color:white">Backend</a>
         </h4></section>
         <!-- sidebar: style can be found in sidebar.less -->
         <section class="sidebar">
             <!-- sidebar menu: : style can be found in sidebar.less -->
             <ul class="sidebar-menu" data-widget="tree">
                 <li class="header">NAVIGATION</li>
-                <li><a href="https://adminlte.io/docs"><i class="fa fa-shopping-bag"></i> <span>Artikel</span></a></li>
+                <li><a href="{% url 'backend-list' %}"><i class="fa fa-shopping-bag"></i> <span>Artikel</span></a></li>
                 <br/>
                 <li class=""><a href="{% url 'gallery' %}"><i class="fa fa-backward text-aqua"></i> <span>Zurück zur Hauptseite</span></a>
                 </li>
@@ -71,8 +72,12 @@
                     <div class="nav-tabs-custom">
                         <!-- Tabs within a box -->
                         <ul class="nav nav-tabs pull-right">
-                            <li class="active"><a data-toggle="tab">Erstellen</a></li>
-                            <li class=""><a data-toggle="tab">Ansicht</a></li>
+                            <li {% if title == "Erstellen" %}class="active"{% endif %}><a
+                                    data-toggle="tab" href="{% url 'backend-create' %}">Erstellen</a></li>
+                            <li {% if title == "Ansicht" %}class="active"{% endif %}><a data-toggle="tab"
+                                                                                        href="{% url 'backend-list' %}">Ansicht
+                            </a>
+                            </li>
                             <li class="pull-left header"><i class="fa fa-inbox"></i> Artikel</li>
                         </ul>
                         <div class="tab-content no-padding">

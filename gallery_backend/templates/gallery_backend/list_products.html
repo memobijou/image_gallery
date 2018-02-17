@@ -1,8 +1,40 @@
 {% extends 'backend.html' %}
+{% load custom_tags %}
 
 {% block content %}
     <div class="container">
-    <div class="col-lg-9">
-    </div>
+        <div class="col-lg-9">
+            <br/>
+            <style>
+
+            </style>
+            <table class="table">
+                <thead>
+                <tr>
+                    {% for name in field_verbose_names %}
+                        <th> {{ name }} </th>
+                    {% endfor %}
+                </tr>
+                </thead>
+                <tbody>
+                {% for object in object_list %}
+                    <tr>
+                        {% for name in field_names %}
+                            {% if name == "image" %}
+                                <td>
+                                    {% if object|getattr_:name %}
+                                        <img src="{{ object | get_image_path_from_object:name }}"
+                                             style="width:48px;height:48px" class="img-thumbnail">
+                                    {% endif %}
+                                </td>
+                            {% else %}
+                                <td> {{ object | getattr_:name }}</td>
+                            {% endif %}
+                        {% endfor %}
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
     </div>
 {% endblock %}
