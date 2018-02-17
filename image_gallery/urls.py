@@ -18,11 +18,13 @@ from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
 from product import views
+from django.urls import include
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('gallery/', views.ProductListView.as_view()),
+    path('gallery/', views.ProductListView.as_view(), name="gallery"),
+    path('', include('gallery_backend.urls')),
 ]
 
 urlpatterns = urlpatterns + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

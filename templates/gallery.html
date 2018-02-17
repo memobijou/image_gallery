@@ -20,16 +20,16 @@
     <div class="tz-gallery">
         <div class="row">
             {% for object in object_list %}
-                <div class="col-sm-6 col-md-4">
-                    <a class="lightbox">
-                        <img src="{{ object.image.url }}" alt="{{ object.title }}">
-                    </a>
-                </div>
+                {% if object.image %}
+                    <div class="col-sm-6 col-md-4">
+                        <a class="lightbox">
+                            <img src="{{ object.image.url }}" alt="{{ object.title }}">
+                        </a>
+                    </div>
+                {% endif %}
             {% endfor %}
         </div>
-
     </div>
-
 </div>
 </body>
 </html>
