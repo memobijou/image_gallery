@@ -1,35 +1,21 @@
-{% load static %}
-
+{% extends 'base.html'%}
 <!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Produkte</title>
-    <link rel="stylesheet" href="{% static "bootstrap/dist/css/bootstrap.min.css" %}">
-    <link rel="stylesheet" href="{% static "jquery/dist/jquery.min.js" %}">
-    <link rel="stylesheet" href="{% static "bootstrap/dist/js/bootstrap.min.js" %}">
-    <link rel="stylesheet" href="{% static "gallery/dist/css/gallery-grid.css" %}">
-</head>
-<body>
-
-<div class="container gallery-container">
-    <h1>Produkte</h1>
-    <div class="tz-gallery">
-        <div class="row">
-            {% for object in object_list %}
-                {% if object.image %}
-                    <div class="col-sm-6 col-md-4">
-                        <a class="lightbox">
-                            <img src="{{ object.image.url }}" alt="{{ object.title }}">
-                        </a>
-                    </div>
-                {% endif %}
-            {% endfor %}
+{% block content %}
+    <div class="container gallery-container">
+        <h1>Produkte</h1>
+        <div class="tz-gallery">
+            <div class="row">
+                {% for object in object_list %}
+                    {% if object.image %}
+                        <div class="col-sm-6 col-md-4">
+                            <a class="lightbox">
+                                <img src="{{ object.image.url }}" alt="{{ object.title }}">
+                            </a>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
         </div>
     </div>
-</div>
-</body>
-</html>
+{% endblock %}
