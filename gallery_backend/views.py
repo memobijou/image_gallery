@@ -39,7 +39,7 @@ class ProductListMixin(ContextMixin):
 class ProductCreate(ProductCreateMixin, generic.CreateView):
     form_class = ProductForm
     template_name = "gallery_backend/create_product.html"
-    success_url = reverse_lazy("gallery")
+    success_url = reverse_lazy("backend-list")
 
 
 class ProductList(ProductListMixin, generic.ListView):
@@ -47,3 +47,24 @@ class ProductList(ProductListMixin, generic.ListView):
 
     def get_queryset(self):
         return Product.objects.all()
+
+
+class ProductUpdate(generic.UpdateView):
+    model = Product
+    fields = "__all__"
+    template_name = "gallery_backend/create_product.html"
+    success_url = reverse_lazy("backend-list")
+
+    def get_object(self):
+        return Product.objects.get(pk=self.kwargs.get("pk"))
+
+
+class ProductDeleteView(generic.DeleteView):
+    template_name = 'confirm_delete_someitems.html'
+    model = Product
+    success_url = reverse_lazy('backend-list')
+
+    def get_object(self):
+        super().get_object()
+        object_ = Product.objects.get(pk=self.kwargs.get("pk"))
+        return object_

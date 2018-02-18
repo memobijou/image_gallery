@@ -8,9 +8,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>Gallery</title>
+    <script src="{% static "jquery/dist/jquery.min.js" %}"></script>
     <link rel="stylesheet" href="{% static "bootstrap/dist/css/bootstrap.min.css" %}">
-    <link rel="stylesheet" href="{% static "jquery/dist/jquery.min.js" %}">
-    <link rel="stylesheet" href="{% static "bootstrap/dist/js/bootstrap.min.js" %}">
+    <script src="{% static "bootstrap/dist/js/bootstrap.min.js" %}"></script>
     <link rel="stylesheet" href="{% static "gallery/dist/css/gallery-grid.css" %}">
 </head>
 <body>
@@ -20,7 +20,7 @@
 <section>
 <div class="container">
     <br/>
-    <a href="{% url 'backend-list' %}"><p class="pull-right">Backend</p></a>
+    <a href="{% url 'backend' %}"><p class="pull-right">Backend</p></a>
 </div>
 </section>
 </body>

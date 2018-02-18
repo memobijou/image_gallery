@@ -17,13 +17,13 @@ from django.contrib import admin
 from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
-from product import views
+from product.views import ProductListView
 from django.urls import include
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('gallery/', views.ProductListView.as_view(), name="gallery"),
+    path('gallery/', ProductListView.as_view(), name="gallery"),
     path('', include('gallery_backend.urls')),
 ]
 
