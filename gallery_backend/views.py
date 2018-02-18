@@ -46,7 +46,7 @@ class ProductList(ProductListMixin, generic.ListView):
     template_name = "gallery_backend/list_products.html"
 
     def get_queryset(self):
-        return Product.objects.all()
+        return Product.objects.all().order_by("-id")
 
 
 class ProductUpdate(generic.UpdateView):

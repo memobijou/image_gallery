@@ -2,6 +2,15 @@
 <!DOCTYPE html>
 
 {% block content %}
+    <header class="bg-black text-white"
+            style=" height:200px;position: relative;">
+        <div class="container text-center">
+            <h1>Willkommen</h1>
+            <p class="lead">Bildergalerie</p>
+        </div>
+    </header>
+    <br/>
+
     <div class="container gallery-container">
         <h1>Produkte</h1>
         <div class="tz-gallery">
@@ -11,7 +20,8 @@
                         <div class="col-sm-6 col-md-4">
                             <a class="lightbox">
                                 <img src="{{ object.image.url }}" alt="{{ object.title }}" data-toggle="modal"
-                                     data-target="#image_modal_{{ forloop.counter }}" style="width:250px;height:250px;cursor:pointer;">
+                                     data-target="#image_modal_{{ forloop.counter }}"
+                                     style="width:250px;height:250px;cursor:pointer;">
                             </a>
                         </div>
                     {% endif %}
@@ -32,9 +42,9 @@
                         {% if object.image %}
                             <img src="{{ object.image.url }}" style="width:550px;height: 550px"></div>
                         {% endif %}
-                    </div>
                 </div>
             </div>
+        </div>
         </div>
     {% endfor %}
 {% endblock %}
