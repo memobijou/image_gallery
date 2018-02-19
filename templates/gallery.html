@@ -20,7 +20,7 @@
                         <div class="col-sm-6 col-md-4">
                             <a class="lightbox">
                                 <img src="{{ object.image.url }}" alt="{{ object.title }}" data-toggle="modal"
-                                     data-target="#image_modal_{{ forloop.counter }}"
+                                     data-target="#image_modal" id="img_{{ forloop.counter }}"
                                      style="width:250px;height:250px;cursor:pointer;">
                             </a>
                         </div>
@@ -30,21 +30,88 @@
         </div>
     </div>
 
-    <!-- Modal -->
-    {% for object in object_list %}
-        <div id="image_modal_{{ forloop.counter }}" class="modal fade" role="dialog">
+        <div id="image_modal" class="modal fade" role="dialog">
             <div class="modal-dialog">
-                <!-- Modal content-->
-                <div class="modal-content">
-                    <div class="modal-body">
-                        <h3>{{ object.title }}</h3>
-                        <p>{{ object.description }}</p>
-                        {% if object.image %}
-                            <img src="{{ object.image.url }}" style="width:550px;height: 550px"></div>
-                        {% endif %}
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            <div class="row">
+                                <span class="glyphicon glyphicon-arrow-left"  id="left_arrow"></span>
+                                <span class="glyphicon glyphicon-arrow-right pull-right" id="right_arrow"></span>
+                            </div>
+                                 <h3 id="modal_title"></h3>
+                                 <p id="modal_description"></p>
+                                 <img src="" id="modal_img" style="width:550px;height: 550px"></div>
+                        </div>
                 </div>
             </div>
         </div>
-        </div>
-    {% endfor %}
+    <!-- Modal -->
+    <script type="text/javascript">
+        var images = {};
+        {% for object in object_list %}
+             images["img_{{ forloop.counter }}"] = {};
+             var title = "{{ object.title }}";
+             var description = "{{ object.description }}";
+             var image_url = "{{ object.image.url }}";
+             images["img_{{ forloop.counter }}"].title = title;
+             images["img_{{ forloop.counter }}"].description = description;
+             images["img_{{ forloop.counter }}"].image_url = image_url;
+             images["img_{{ forloop.counter }}"].is_in_modal = false;
+        {% endfor %}
+
+        for(var k in images){
+            var image_html_element = document.getElementById(k);
+            image_html_element.onclick = function(e){
+                image_data_to_modal_body(this);
+                mark_modal_image(this);
+            };
+        }
+
+        var right_arrow = document.getElementById("right_arrow");
+        var left_arrow = document.getElementById("left_arrow");
+
+        right_arrow.onclick = function(e){
+            var sibling = get_sibling_image_id(true);
+            alert(sibling);
+        };
+
+        left_arrow.onclick = function(e){
+            var sibling = get_sibling_image_id(false);
+            alert(sibling);
+        };
+
+        var image_data_to_modal_body = function(html_element){
+            document.getElementById("modal_img").src = images[html_element.id].image_url;
+            document.getElementById("modal_title").innerHTML = images[html_element.id].title;
+            document.getElementById("modal_description").innerHTML = images[html_element.id].description;
+        };
+
+        var mark_modal_image = function(clicked_element){
+            for(var k in images){
+                if(k == clicked_element.id){
+                    images[k].is_in_modal = true;
+                }else{
+                    images[k].is_in_modal = false;
+                }
+            }
+        };
+
+        var get_sibling_image_id = function(next){
+            var modal_image = null;
+            for(var k in images){
+                var image = images[k];
+                if(image.is_in_modal === true){
+                    modal_image = image;
+                    break;
+                }
+            }
+            if(next === true){
+                return k.match(/\d+/)+1;  // HIER VERSUCHEN DEN GRÖßEREN IM JSON ZU KRIEGEN!
+            }else{
+                return k.match(/\d+/)-1;// HIER VERSUCHEN DEN KLEINER IM JSON ZU KRIEGEN!
+            }
+        }
+
+    </script>
 {% endblock %}
