@@ -1,6 +1,7 @@
 from django.db.models import Q
 from django.views import generic
 from product import models
+from xlrd import open_workbook
 # Create your views here.
 
 
