@@ -62,12 +62,13 @@
 {% endblock %}
 
 {% block tabs %}
+    <li {% if title == "Import" %}class="active"{% endif %}><a
+        data-toggle="tab" href="{% url 'backend-create' %}">Import</a></li>
     <li {% if title == "Erstellen" %}class="active"{% endif %}><a
             data-toggle="tab" href="{% url 'backend-create' %}">Erstellen</a></li>
-    <li {% if title == "Ansicht" %}class="active"{% endif %}>
-        <a data-toggle="tab"
-           href="{% url 'backend-list' %}">Ansicht
-        </a>
+    <li {% if title == "Ansicht" %}class="active"{% endif %}><a data-toggle="tab"
+                                                                href="{% url 'backend-list' %}">Ansicht
+    </a>
     </li>
 {% endblock %}
 

@@ -1,5 +1,6 @@
 from django.forms import ModelForm
 from product.models import Product
+from django import forms
 
 
 class ProductForm(ModelForm):
@@ -16,3 +17,7 @@ class ProductForm(ModelForm):
             self.fields[field].widget.attrs.update({
                 'class': 'form-control'
             })
+
+
+class ImportForm(forms.Form):
+    excel_field = forms.FileField(label="Excel-Datei")

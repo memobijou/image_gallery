@@ -1,6 +1,6 @@
 from django.urls import reverse_lazy
 from django.views import generic
-from gallery_backend.forms import ProductForm
+from gallery_backend.forms import ProductForm, ImportForm
 from product.models import Product
 from django.views.generic.base import ContextMixin
 
@@ -68,3 +68,21 @@ class ProductDeleteView(generic.DeleteView):
         super().get_object()
         object_ = Product.objects.get(pk=self.kwargs.get("pk"))
         return object_
+
+
+class ExcelImportView(generic.FormView):
+    template_name = "gallery_backend/import_excel.html"
+    form_class = ImportForm
+    success_url = reverse_lazy("backend-list")
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data()
+        context["title"] = "Import"
+        return context
+
+    def post(self, request, *args, **kwargs):
+        print(self.request.FILES)
+        for field_name, file in self.request.FILES.items():
+            for bytes in file.chunks():
+                print(bytes)
+        return super().post(request, *args, **kwargs)
