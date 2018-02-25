@@ -1,3 +1,5 @@
+{% load humanize %}
+
 <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="false">
    <!-- Wrapper for slides -->
 
@@ -14,7 +16,7 @@
                 <p><b>EAN: </b> {{ object.ean }}</p>
                 <p><b>Menge: </b> {{ object.amount }}</p>
                 {% if object.price %}
-                <p><b>Preis: </b> {{ object.price }}€</p>
+                <p><b>Preis: </b> {{ object.price|floatformat:2 }}€</p>
                 {% endif %}
                 {% if object.purchase_price %}
                 <p>ID: {{ object.purchase_price }}</p>

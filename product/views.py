@@ -16,7 +16,7 @@ class ProductListView(generic.ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["field_names"] = self.get_field_names(exclude=["id"])
+        context["field_names"] = self.get_field_names(exclude=["id", "title", "image", "description"])
         return context
 
     def get_field_names(self,exclude=None):

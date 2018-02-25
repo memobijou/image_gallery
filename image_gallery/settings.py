@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'product.apps.ProductConfig',
     'gallery_backend.apps.GalleryBackendConfig',
+    "django.contrib.humanize",
 ]
 
 MIDDLEWARE = [

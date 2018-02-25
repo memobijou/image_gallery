@@ -87,11 +87,11 @@ class ExcelImportView(generic.FormView):
         content = request.FILES["excel_field"].read()
         file_type = str(request.FILES["excel_field"]).split(".")[1]
         table = self.get_table(content, file_type)
-        self.table_data_to_product_model(Product, table,
+        self.table_data_to_model(Product, table,
                                          ["supplier", "description", "ean", "amount", "price", "purchase_price"])
         return super().post(request, *args, **kwargs)
 
-    def table_data_to_product_model(self, model, table, replace_header=None):
+    def table_data_to_model(self, model, table, replace_header=None):
         header = table.header
         if replace_header:
             header = replace_header
