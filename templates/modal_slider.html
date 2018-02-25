@@ -1,4 +1,4 @@
-<div id="myCarousel" class="carousel slide" data-ride="carousel">
+<div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="false">
    <!-- Wrapper for slides -->
 
   <div class="carousel-inner">
@@ -6,10 +6,19 @@
         {% if object.image %}
             <div class="item">
                 <div class="text-center">
-                    <h3>{{ object.title }}</h3>
+                    <h3>{{ object.supplier }}</h3>
                     <p> {{ object.description }}</p>
                 </div>
                 <img src="{{ object.image.url }}" id="img_{{ forloop.counter }}_slide">
+                <br/>
+                <p><b>EAN: </b> {{ object.ean }}</p>
+                <p><b>Menge: </b> {{ object.amount }}</p>
+                {% if object.price %}
+                <p><b>Preis: </b> {{ object.price }}€</p>
+                {% endif %}
+                {% if object.purchase_price %}
+                <p>ID: {{ object.purchase_price }}</p>
+                {% endif %}
             </div>
         {% endif %}
     {% endfor %}

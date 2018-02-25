@@ -10,4 +10,5 @@ urlpatterns = [
     path('backend/import/', views.ExcelImportView.as_view(), name="backend-import"),
     path('backend/<int:pk>/edit/', views.ProductUpdate.as_view(), name="backend-update"),
     path('backend/<int:pk>/delete/', views.ProductDeleteView.as_view(), name='product_delete'),
+
 ]

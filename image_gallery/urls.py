@@ -24,6 +24,7 @@ from django.urls import include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('gallery/', ProductListView.as_view(), name="gallery"),
+    path('', ProductListView.as_view(), name="root"),
     path('', include('gallery_backend.urls')),
 ]
 
